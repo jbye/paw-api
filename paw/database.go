@@ -10,11 +10,7 @@ import (
 
 // InitializeDatabase -
 func InitializeDatabase(app *App) gorm.DB {
-	connectionString := "postgres://" + app.Config.Database.User + ":" + app.Config.Database.Password +
-		"@" + app.Config.Database.Host + ":5432/" + app.Config.Database.Name +
-		"?sslmode=disable"
-
-	db, err := gorm.Open("postgres", connectionString)
+	db, err := gorm.Open("postgres", app.Config.Database.ConnectionString)
 
 	if err != nil {
 		log.Error("Cannot open database connection", err)

@@ -7,6 +7,7 @@ import (
 	log "github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
+	"github.com/lib/pq"
 	"gopkg.in/yaml.v2"
 )
 
@@ -21,10 +22,11 @@ type App struct {
 		}
 
 		Database struct {
-			User     string
-			Password string
-			Host     string
-			Name     string
+			User             string
+			Password         string
+			Host             string
+			Name             string
+			ConnectionString string
 		}
 	}
 }
@@ -54,4 +56,23 @@ func loadConfig(app *App) {
 		log.Error("Unable to unmarshal config", err)
 		panic(err)
 	}
+
+	// ENV overrides
+
+	servicePort := os.Getenv("PORT")
+	if servicePort != "" {
+		app.Config.Service.Host = ":" + servicePort
+	}
+
+	databaseURL := os.Getenv("DATABASE_URL")
+	var connectionString string
+	if databaseURL != "" {
+		connectionString, _ := pq.ParseURL(databaseURL)
+		connectionString += " sslmode=require"
+	} else {
+		connectionString = "postgres://" + app.Config.Database.User + ":" + app.Config.Database.Password +
+			"@" + app.Config.Database.Host + ":5432/" + app.Config.Database.Name +
+			"?sslmode=disable"
+	}
+	app.Config.Database.ConnectionString = connectionString
 }
