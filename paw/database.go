@@ -1,20 +1,18 @@
-package main
+package paw
 
 import (
 	"time"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/jinzhu/gorm"
-	_ "github.com/lib/pq"
+	_ "github.com/lib/pq" // ??
 )
 
 // InitializeDatabase -
-func InitializeDatabase() gorm.DB {
-	connectionString := "postgres://" + config.Database.User + ":" + config.Database.Password +
-		"@" + config.Database.Host + ":5432/" + config.Database.Name +
+func InitializeDatabase(app *App) gorm.DB {
+	connectionString := "postgres://" + app.Config.Database.User + ":" + app.Config.Database.Password +
+		"@" + app.Config.Database.Host + ":5432/" + app.Config.Database.Name +
 		"?sslmode=disable"
-
-	log.Debug("ConnectionString: %s", connectionString)
 
 	db, err := gorm.Open("postgres", connectionString)
 

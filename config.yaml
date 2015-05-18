@@ -1,7 +1,7 @@
 service:
   host: :3001
 database:
-  user: paw
-  password: "pawdev"
+  user: dev
+  password: "dev1234"
   host: localhost
   name: paw-dev
