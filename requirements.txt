@@ -1,0 +1,5 @@
+github.com/gin-gonic/gin
+github.com/jinzhu/gorm
+github.com/lib/pq
+github.com/Sirupsen/logrus
+github.com/stephenmuss/ginerus
