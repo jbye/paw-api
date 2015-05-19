@@ -28,7 +28,7 @@ func (r *UserResource) CreateUser(c *gin.Context) {
 func (r *UserResource) ListUsers(c *gin.Context) {
 	var users []User
 
-	r.db.Order("id desc").Find(&users)
+	r.App.Database.Order("id desc").Find(&users)
 
 	c.JSON(http.StatusOK, users)
 }
@@ -38,7 +38,7 @@ func (r *UserResource) ShowUser(c *gin.Context) {
 	var userID = c.Params.ByName("id")
 	var existing User
 
-	if r.db.First(&existing, userID).RecordNotFound() {
+	if r.App.Database.First(&existing, userID).RecordNotFound() {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Not found"})
 	} else {
 		c.JSON(http.StatusOK, existing)
@@ -56,7 +56,7 @@ func (r *UserResource) UpdateUser(c *gin.Context) {
 	}
 
 	var existing User
-	if r.db.First(&existing, userID).RecordNotFound() {
+	if r.App.Database.First(&existing, userID).RecordNotFound() {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Not found"})
 	} else {
 
@@ -65,7 +65,7 @@ func (r *UserResource) UpdateUser(c *gin.Context) {
 		existing.MiddleName = user.MiddleName
 		existing.LastName = user.LastName
 
-		r.db.Save(&existing)
+		r.App.Database.Save(&existing)
 		c.JSON(http.StatusOK, existing)
 	}
 }
