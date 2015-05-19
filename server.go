@@ -62,6 +62,7 @@ func main() {
 		apiGroup.GET("/users", userResource.ListUsers)
 		apiGroup.POST("/users", userResource.CreateUser)
 		apiGroup.PUT("/users/:id", userResource.UpdateUser)
+		apiGroup.GET("/users/:id", userResource.ShowUser)
 	}
 
 	app.Engine.Run(config.Service.Host)
