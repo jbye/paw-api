@@ -1,0 +1,41 @@
+{
+	"ImportPath": "github.com/jbye/paw-api",
+	"GoVersion": "go1.4.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/Sirupsen/logrus",
+			"Comment": "v0.7.3-8-g52919f1",
+			"Rev": "52919f182f9c314f8a38c5afe96506f73d02b4b2"
+		},
+		{
+			"ImportPath": "github.com/gin-gonic/gin",
+			"Comment": "v0.6-2-gbd2c864",
+			"Rev": "bd2c8643467007ae1be5c108306e14f1e768c10b"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm",
+			"Rev": "371cd41204f51c6236193dd82e75edf20b46961d"
+		},
+		{
+			"ImportPath": "github.com/julienschmidt/httprouter",
+			"Rev": "8c199fb6259ffc1af525cc3ad52ee60ba8359669"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Comment": "go1.0-cutoff-47-g93e9980",
+			"Rev": "93e9980741c9e593411b94e07d5bad8cfb4809db"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Rev": "d67e0b7d1797975196499f79bcc322c08b9f218b"
+		},
+		{
+			"ImportPath": "github.com/stephenmuss/ginerus",
+			"Rev": "b6f23fc5734bd863597f93cf0f59784ded859349"
+		},
+		{
+			"ImportPath": "gopkg.in/yaml.v2",
+			"Rev": "49c95bdc21843256fb6c4e0d370a05f24a0bf213"
+		}
+	]
+}

@@ -1,15 +1,14 @@
-package main
+package paw
 
 import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
 )
 
 // UserResource -
 type UserResource struct {
-	db gorm.DB
+	App *App
 }
 
 // CreateUser -
@@ -21,7 +20,7 @@ func (r *UserResource) CreateUser(c *gin.Context) {
 		return
 	}
 
-	r.db.Save(&user)
+	r.App.Database.Save(&user)
 	c.JSON(http.StatusCreated, user)
 }
 
